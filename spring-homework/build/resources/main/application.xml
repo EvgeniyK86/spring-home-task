@@ -1,0 +1,59 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<beans xmlns="http://www.springframework.org/schema/beans"
+
+       xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+       xsi:schemaLocation="http://www.springframework.org/schema/beans http://www.springframework.org/schema/beans/spring-beans.xsd">
+
+
+    <bean id="driver" class="by.itacademy.spring.Driver" factory-method="getInstance"
+          init-method="init" destroy-method="destroy">
+        <!--p:age="34" p:name="Petr" p:surname="Petrov" p:phone="+375-44-123-45-67" p:email="Petr@mail.com"
+        p:car-ref="car"-->
+        <property name="name">
+            <map>
+                <entry key="Petr" value="Petrov"/>
+                <entry key="Ivan" value="Ivanov"/>
+            </map>
+        </property>
+        <property name="age" value="34"/>
+        <property name="phone" value="+375-44-123-45-67"/>
+        <property name="email">
+            <null/>
+        </property>
+        <property name="car" ref="car"/>
+    </bean>
+    <bean id="car" class="by.itacademy.spring.Car">
+        <constructor-arg name="model" value="Peugeot 3008"/>
+        <constructor-arg name="engineCapacity" value="2.0"/>
+        <property name="engineType">
+            <list>
+                <value>PETROL</value>
+                <value>GAS</value>
+                <value>DIESEL</value>
+            </list>
+        </property>
+    </bean>
+    <bean id="car2" class="by.itacademy.spring.Car">
+        <constructor-arg name="model" value="Peugeot 3008"/>
+        <constructor-arg name="engineCapacity" value="2.0"/>
+        <property name="engineType">
+            <list>
+                <value>PETROL</value>
+                <value>GAS</value>
+                <value>DIESEL</value>
+            </list>
+        </property>
+    </bean>
+    <bean name="task6" class="by.itacademy.spring.Task6">
+        <property name="sum" value="#{2+3}"/>
+        <property name="square" value="#{2*3}"/>
+        <property name="pi" value="#{T(java.lang.Math).PI}"/>
+        <property name="del" value="#{3/2}"/>
+        <property name="minus" value="#{3-2}"/>
+        <property name="ge" value="#{3 ge(2)}"/>
+        <property name="gt" value="#{3 gt(2)}"/>
+        <property name="le" value="#{3 le(2)}"/>
+        <property name="lt" value="#{3 lt(2)}"/>
+        <property name="equals" value="#{car eq car}"/>
+    </bean>
+</beans>
